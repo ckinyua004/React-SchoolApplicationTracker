@@ -549,30 +549,258 @@ table a {
 }
 
 /* ---------- Small screens ---------- */
+
+/* ---------- Responsive layout ---------- */
+
+/* Tablets and smaller laptops */
 @media (max-width: 900px) {
+  #root {
+    padding-inline: 20px;
+  }
+
   .analytics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .header {
+    padding-top: 30px;
+  }
+
+  .table-container {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .status-board {
+    grid-auto-columns: minmax(240px, 75%);
+  }
 }
 
+/* Phones */
 @media (max-width: 560px) {
   #root {
-    padding: 0 14px 48px;
+    padding: 0 14px 32px;
   }
 
+  .header {
+    padding: 24px 0 16px;
+  }
+
+  .header h1 {
+    font-size: clamp(1.45rem, 6vw, 1.8rem);
+    overflow-wrap: anywhere;
+  }
+
+  /* Navigation tabs */
+  .header + div {
+    gap: 16px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+
+  .header + div button {
+    flex-shrink: 0;
+    font-size: 0.88rem;
+  }
+
+  /* Analytics cards */
   .analytics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 20px;
   }
 
+  .analytics > div {
+    padding: 12px;
+  }
+
+  .analytics h3:first-child {
+    font-size: 1.6rem;
+  }
+
+  .analytics h3:last-child {
+    font-size: 0.78rem;
+    overflow-wrap: anywhere;
+  }
+
+  /* Application toolbar */
   .mApplications {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
-  .header + div {
-    gap: 18px;
+  .mApplications > div {
+    width: 100%;
+  }
+
+  .mApplications > div:last-child > button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  /* Bulk management controls */
+  .btn {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  /* Table: preserve columns and allow horizontal scrolling */
+  .table-container {
+    max-width: 100%;
+    overflow: auto;
+    max-height: 65vh;
+  }
+
+  table {
+    min-width: 900px;
+  }
+
+  thead th button {
+    padding: 10px;
+  }
+
+  tbody td {
+    padding: 10px;
+  }
+
+  /* Kanban board */
+  
+/* ---------- Responsive Kanban board ---------- */
+.status-board {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(250px, 28vw, 320px);
+  gap: 16px;
+  padding: 4px 2px 16px;
+  align-items: start;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.status-column {
+  min-width: 0;
+  min-height: 220px;
+  padding: 10px;
+  scroll-snap-align: start;
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .status-board {
+    grid-auto-columns: minmax(260px, 42vw);
+    gap: 12px;
+  }
+
+  .status-column {
+    padding: 9px;
   }
 }
+
+/* Phones */
+@media (max-width: 560px) {
+  .status-board {
+    grid-auto-columns: 85%;
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+
+  .status-column {
+    min-height: 180px;
+    padding: 10px;
+  }
+
+  .status-column-header h2 {
+    font-size: 0.95rem;
+  }
+
+  .status-cards {
+    gap: 10px;
+  }
+
+  .application-card {
+    padding: 10px 12px;
+  }
+
+  .application-card h3 {
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  .application-card p {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+    padding: 5px 0;
+  }
+
+  .application-card small {
+    line-height: 1.5;
+    padding-top: 6px;
+    overflow-wrap: anywhere;
+  }
+}
+
+  /* .status-board {
+    grid-auto-columns: minmax(250px, 88%);
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .status-column {
+    padding: 8px;
+  } */
+
+  /* Add application modal */
+  .modal-content {
+    width: calc(100% - 24px);
+    max-height: calc(100dvh - 24px);
+    padding: 18px;
+    border-radius: 6px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-content input,
+  .modal-content select,
+  .modal-content button {
+    min-height: 44px;
+  }
+
+  .modal-content button[type='submit'] {
+    width: 100%;
+  }
+
+  .modal-content button[type='button'] {
+    width: 100%;
+  }
+}
+
+/* Very narrow phones */
+@media (max-width: 360px) {
+  #root {
+    padding-inline: 10px;
+  }
+
+  .analytics > div {
+    padding: 9px;
+  }
+
+  .analytics h3:first-child {
+    font-size: 1.4rem;
+  }
+
+  .modal-content {
+    padding: 14px;
+  }
+}
+
 
 /* ---------- Hidden scrollbars (scrolling still works) ---------- */
 .table-container,
